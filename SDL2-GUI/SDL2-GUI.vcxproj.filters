@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\3DBackground">
+      <UniqueIdentifier>{799226d1-4a27-4d11-a459-8120b1d97687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI_Components">
+      <UniqueIdentifier>{01232fed-f65d-4b1d-bbb1-446cdd7c35d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI_Components">
+      <UniqueIdentifier>{0f98e5eb-d6e7-493a-b54f-6794a91e587e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mainSDLtest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIBoxBound.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIButton.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIFactory.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIForm.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUILayout.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUITextBox.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIView.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Element.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GLSLShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUITextInput.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIFont.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp">
+      <Filter>Source Files\GUI_Components</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GL_Camera.h">
+      <Filter>Header Files\3DBackground</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMesh.h">
+      <Filter>Header Files\3DBackground</Filter>
+    </ClInclude>
+    <ClInclude Include="tut1.h">
+      <Filter>Header Files\3DBackground</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityFuncs.h">
+      <Filter>Header Files\3DBackground</Filter>
+    </ClInclude>
+    <ClInclude Include="Element.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIBound.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GLSLShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIBoxBound.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIButton.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIEvent.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIFactory.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIForm.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUILayout.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUITextBox.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIView.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image_write.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_Stencil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUITextInput.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="drawtext.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="drawtext_impl.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIFont.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
+      <Filter>Header Files\GUI_Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
