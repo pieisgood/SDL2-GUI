@@ -1,4 +1,5 @@
 #include"GUIManager.h"
+#include<iostream>
 
 GUIManager::GUIManager(){
 	m_event = new GUIEvent();
@@ -18,7 +19,7 @@ void GUIManager::pollGUIEvent(GUIEvent* in_event){
 void GUIManager::updateMs(float ms){
 	std::string text = std::string("FPS: ");
 	text.append(std::to_string((int)ms));
-	m_fps->updateText(text, 5);
+	m_fps->updateText(text, 0);
 }
 
 void GUIManager::drawFPS(){
@@ -66,6 +67,10 @@ void GUIManager::onEvent(SDL_Event* event){
 	}
 	else if(event->type == SDL_MOUSEBUTTONDOWN || event->type == SDL_MOUSEBUTTONUP){
 		m_window->onMouseButton(event, m_event);
+	}
+	else if(event->type == SDL_MOUSEWHEEL){
+		m_window->onMouseScroll(event);
+		std::cout << event->wheel.y << '\n';
 	}
 }
 

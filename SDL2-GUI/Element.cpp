@@ -15,7 +15,3 @@ void Element::addBound(GUIBound* bound){
 void Element::addParent( Element* parent ){
 	m_parent = parent;
 }
-
-void Element::assignLayer(unsigned int layer){
-	m_layer = layer;
-}

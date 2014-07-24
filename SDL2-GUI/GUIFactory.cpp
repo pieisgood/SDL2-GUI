@@ -22,7 +22,7 @@ GUIManager* GUIFactory::newGUIManager( const char* xmlFile ){
 	m_manager = new GUIManager();
 	m_manager->assignView(m_view);
 	m_manager->assignProgram(program);
-	m_manager->assignFPS( (GUITextBox*) newTextBox( 10, 10, 100, 100, "fps_box", NULL, glm::vec2(1.0, 1.0), "FPS: 1000", m_view) );
+	m_manager->assignFPS( (GUITextBox*) newTextBox( 100, 40, 100, 100, "fps_box", NULL, glm::vec2(1.0, 1.0), "FPS: 100000", m_view) );
 
 	if(m_doc->LoadFile(xmlFile)){
 		printf("loading xml file error");
@@ -43,10 +43,10 @@ Element* GUIFactory::newTextBox( int x, int y, int width, int height, const char
 	outTextBox->assignHeight( height );
 	outTextBox->assignWidth( width );
 	outTextBox->addParent( parent );
-	outTextBox->assignPosition( this->getPos(x + width/2, y + height/2) );
+	outTextBox->assignPosition( this->getPos(x , y ) );
 	outTextBox->assignScreenPosition( x, y );
 	outTextBox->assignScale( scale );
-	outTextBox->assignText( text );
+	outTextBox->assignTextWrap( text , width );
 	outTextBox->assignNumChars( text.size() );
 
 	return outTextBox;
@@ -89,6 +89,19 @@ GUIFont* GUIFactory::newGUIFont(const char* fontTexture , const char* fontData ,
 	return localFont;
 }
 
+glm::vec4 GUIFactory::createStencil( Element* el, Element* parent ) {
+	glm::vec4 stencil; //represents the x,y position and width and height
+
+	//need parameters defining a stencil for the element
+	//also need method to obtain the stencil within the parent element
+	//will need to update this down the tree
+
+	//return created stencil, or just add to the element and make this method null
+	return stencil;
+
+}
+
+
 Element* GUIFactory::newElement( tinyxml2::XMLElement* type, Element* parent ){
 	const char* name = type->Name();
 	if(std::strcmp( name, "button") == 0){
@@ -123,10 +136,15 @@ Element* GUIFactory::newElement( tinyxml2::XMLElement* type, Element* parent ){
 	else if(std::strcmp(name, "text_box") == 0){
 		float x = type->IntAttribute("width");
 		float y = type->IntAttribute("height");
+		std::string boxText = type->GetText();
+
+		if( boxText.size() == 0 ){
+			boxText.append(" ");
+		}
 
 		Element* textBox = newTextBox( type->IntAttribute("x"), type->IntAttribute("y"),
 			type->IntAttribute("width"), type->IntAttribute("height"), type->Attribute("id"),
-			parent, glm::vec2(x, y), " ", m_view);
+			parent, glm::vec2(x, y), boxText , m_view);
 
 		textBox->assignView(m_view);
 

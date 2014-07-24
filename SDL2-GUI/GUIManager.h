@@ -1,3 +1,31 @@
+/**
+ * \class GUIManager
+ *
+ * \ingroup SDL2-GUI
+ *
+ * \brief Manages all Elements and a seperate framebuffer
+ *
+ * This class manages the rendering, events and processing 
+ * of elements in the element tree. It also manages a seperate 
+ * framebuffer so that SDL2-GUI rendering does not interfere
+ * with user rendering.
+ *
+ * \note Needs to be created using a GUIFactory
+ *
+ * \author  Lee Jacobs 
+ *
+ * \version  1.0 
+ *
+ * \date 2014/06/10 
+ *
+ * Contact: leemichaeljacobs@gmail.com
+ *
+ * Created on: 2014/05/28
+ *
+ * $Id: doxygen-howto.html,v 1.5 2005/04/14 14:16:20 bv Exp $
+ *
+ */
+
 #ifndef SDLGUIMANAGER
 #define SDLGUIMANAGER
 #include "GUIEvent.h"

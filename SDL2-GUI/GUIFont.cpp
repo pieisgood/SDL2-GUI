@@ -46,6 +46,7 @@ void GUIFont::assignTransparency( float alpha ){
 }
 
 GLuint GUIFont::cacheText( std::string text , GLuint vertVBO, GLuint texcoordVBO, GLuint textVAO ){
+
 	std::vector<float> Verts;
 	std::vector<float> TexCoords;
 	
@@ -55,7 +56,7 @@ GLuint GUIFont::cacheText( std::string text , GLuint vertVBO, GLuint texcoordVBO
 
 		m_fontProgram->use();
 
-			//generate VBO to hold surface data
+			//Bind VBO to hold surface data
 			glBindBuffer(GL_ARRAY_BUFFER, vertVBO);
 				glBufferData(GL_ARRAY_BUFFER, sizeof(float)*Verts.size(), &Verts[0], GL_DYNAMIC_DRAW);
 				//bind vertex position attribute to GLSL program
@@ -63,7 +64,7 @@ GLuint GUIFont::cacheText( std::string text , GLuint vertVBO, GLuint texcoordVBO
 				m_fontProgram->bindAttribLocation(0, "vert_pos");
 				glEnableVertexAttribArray(0);
 
-			//generate VBO to hold surface data
+			//Bind VBO to hold surface data
 			glBindBuffer(GL_ARRAY_BUFFER, texcoordVBO);
 				glBufferData(GL_ARRAY_BUFFER, sizeof(float)*TexCoords.size(), &TexCoords[0], GL_DYNAMIC_DRAW);
 				//bind texture coordinate attribute to GLSL program
@@ -80,22 +81,23 @@ GLuint GUIFont::cacheText( std::string text , GLuint vertVBO, GLuint texcoordVBO
 }
 
 GLuint GUIFont::cacheTextWrap( std::string text, GLuint vertVBO, GLuint texcoordVBO, GLuint textVAO , int width ) {
+
 	//request GPU memory allocation of the size neccesary to hold all the vertex data in this text.
 	glBindVertexArray(textVAO);
 
 		m_fontProgram->use();
 
-			//generate VBO to hold surface data
+			//Bind VBO to hold surface data
 			glBindBuffer(GL_ARRAY_BUFFER, vertVBO);
-				glBufferData(GL_ARRAY_BUFFER, sizeof(float)*text.size()*12, NULL , GL_DYNAMIC_DRAW);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(text.size() + 1)*12, NULL , GL_DYNAMIC_DRAW);
 				//bind vertex position attribute to GLSL program
 				glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 				m_fontProgram->bindAttribLocation(0, "vert_pos");
 				glEnableVertexAttribArray(0);
 
-			//generate VBO to hold surface data
+			//Bind VBO to hold surface data
 			glBindBuffer(GL_ARRAY_BUFFER, texcoordVBO);
-				glBufferData(GL_ARRAY_BUFFER, sizeof(float)*text.size()*12, NULL , GL_DYNAMIC_DRAW);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(text.size() + 1)*12, NULL , GL_DYNAMIC_DRAW);
 				//bind texture coordinate attribute to GLSL program
 				glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 				m_fontProgram->bindAttribLocation(1, "vert_texcoord");
@@ -111,29 +113,52 @@ GLuint GUIFont::cacheTextWrap( std::string text, GLuint vertVBO, GLuint texcoord
 	std::vector<std::string>::iterator textLines = lines.begin();
 
 	int Yoffset = 0;
+	int totalText = 0;
+	std::string currentLine;
+	int totalWordLength = 0;
+	int lineNum = 0;
 
+	//add each line to the cached text
 	for(; textLines != lines.end(); textLines++) {
 
 		std::vector<std::string> words = split( *textLines , ' ');
 		std::vector<std::string>::iterator wordList = words.begin();
+		
+		totalWordLength = 0;
+		lineNum = 0;
+		
+		//add words to the cached text
+		for(; wordList != words.end(); wordList++) {		
 
-		int totalWordLength = 0;
-		int lineNum = 0;
-		std::string currentLine;
+			if( currentLine.size() * m_charSet.Chars[' '].XAdvance > width ) {
 
-		for(; wordList != words.end(); wordList++) {
-
-			totalWordLength += wordList->size() + 1;
-
-			if( totalWordLength * m_charSet.Chars[' '].XAdvance > width ) {
-
-				this->updateCacheText(currentLine, vertVBO, texcoordVBO, textVAO, lineNum*totalWordLength, Yoffset );
+				this->updateCacheText(currentLine, vertVBO, texcoordVBO, textVAO, totalText , Yoffset );
 
 				Yoffset += m_charSet.LineHeight;
+				totalText += totalWordLength;
+				totalWordLength = 0;
 				lineNum++;
+				currentLine.clear();
 			}
 
+			totalWordLength += wordList->size();
+
+			wordList->append(" ");
+				totalWordLength += 1;
+
 			currentLine.append(*wordList);
+
+			
+		}
+
+		//Add last line to the cache 
+		if( currentLine.size() != 0 ){
+			this->updateCacheText(currentLine, vertVBO, texcoordVBO, textVAO, totalText , Yoffset );
+
+			Yoffset += m_charSet.LineHeight;
+			totalText += totalWordLength;
+			lineNum++;
+			currentLine.clear();
 		}
 
 		Yoffset += m_charSet.LineHeight;
@@ -142,19 +167,19 @@ GLuint GUIFont::cacheTextWrap( std::string text, GLuint vertVBO, GLuint texcoord
 	return 0;
 }
 
-GLuint GUIFont::updateCacheText( std::string text, GLuint vertVBO, GLuint texcoordVBO, GLuint textVAO , int updateLocation, int CurY ) {
+GLuint GUIFont::updateCacheText( std::string text, GLuint vertVBO, GLuint texcoordVBO, GLuint textVAO , int updateLocation, int CurY, int CurX ) {
 
 	std::vector<float> vertData;
 	std::vector<float> texcoordData;
 
-	this->textListFill( text, vertData, texcoordData, CurY , updateLocation*m_charSet.Chars[33].XAdvance);
+	textListFill( text, vertData, texcoordData, CurY , CurX );
 
 	glBindBuffer(GL_ARRAY_BUFFER, vertVBO);
-	//glBufferSubData(  GL_ARRAY_BUFFER , updateLocation*sizeof(float)*12, vertData.size()*sizeof(float), &vertData[0] );
-	glBufferSubData(  GL_ARRAY_BUFFER , 0, vertData.size()*sizeof(float), &vertData[0] );
+	glBufferSubData(  GL_ARRAY_BUFFER , updateLocation*sizeof(float)*12, vertData.size()*sizeof(float), &vertData[0] );
+
 	glBindBuffer(GL_ARRAY_BUFFER, texcoordVBO);
-	//glBufferSubData(  GL_ARRAY_BUFFER , updateLocation*sizeof(float)*12, texcoordData.size()*sizeof(float), &texcoordData[0] );
-	glBufferSubData(  GL_ARRAY_BUFFER , 0, texcoordData.size()*sizeof(float), &texcoordData[0] );
+	glBufferSubData(  GL_ARRAY_BUFFER , updateLocation*sizeof(float)*12, texcoordData.size()*sizeof(float), &texcoordData[0] );
+
 	return 0;
 }
 

@@ -112,7 +112,7 @@ int main(int argc, char **argv){
 		SDL_GL_SwapWindow(g_pWindow);
 		frameCount++;
 		msSum += tDelta;
-		//SDL_Delay(5);
+		SDL_Delay(5);
 		
 	}
 

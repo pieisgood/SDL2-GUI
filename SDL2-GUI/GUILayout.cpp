@@ -1,10 +1,8 @@
 #include"GUILayout.h"
+#include<iostream>
+GUILayout::GUILayout()
+	: Element(){
 
-GUILayout::GUILayout(){
-	m_pos.x = 0;
-	m_pos.y = 0;
-	m_width = 0;
-	m_height = 0;
 }
 
 GUILayout::~GUILayout(){
@@ -13,6 +11,7 @@ GUILayout::~GUILayout(){
 
 void GUILayout::draw(){
 	//optional layout render goes here
+	//m_view->renderError(m_pos, m_scale);
 
 	std::vector<Element*>::iterator itr;
 	itr = m_children.begin();
@@ -62,5 +61,18 @@ void GUILayout::onMouseButton(SDL_Event* ev, GUIEvent* clicked){
 
 	for(; itr != m_children.end(); itr++){
 		itr[0]->onMouseButton(ev, clicked);
+	}
+}
+
+void GUILayout::onMouseScroll( SDL_Event* ev ) {
+
+	m_pos.y += ev->wheel.y;
+	m_screenPos.y -= ev->wheel.y*240;
+
+	std::vector<Element*>::iterator itr;
+	itr = m_children.begin();
+
+	for(; itr != m_children.end(); itr++){
+		itr[0]->onMouseScroll(ev);
 	}
 }

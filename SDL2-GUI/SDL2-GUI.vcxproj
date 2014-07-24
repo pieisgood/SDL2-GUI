@@ -48,6 +48,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\SDL2-2.0.1\include;C:\Users\Lee\Desktop\assimp--3.0.1270-sdk\include;C:\Users\Lee\Desktop\jansson-2.5\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -81,14 +82,13 @@
     <ClCompile Include="GUIForm.cpp" />
     <ClCompile Include="GUILayout.cpp" />
     <ClCompile Include="GUIManager.cpp" />
+    <ClCompile Include="GUIRadioButton.cpp" />
     <ClCompile Include="GUITextBox.cpp" />
     <ClCompile Include="GUITextInput.cpp" />
     <ClCompile Include="GUIView.cpp" />
     <ClCompile Include="mainSDLtest.cpp" />
     <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
-    <ClInclude Include="drawtext.h" />
-    <ClInclude Include="drawtext_impl.h" />
     <ClInclude Include="GLSLShader.h" />
     <ClInclude Include="GL_Camera.h" />
     <ClInclude Include="GL_Stencil.h" />
@@ -97,9 +97,13 @@
     <ClInclude Include="GUIEvent.h" />
     <ClInclude Include="GUIFont.h" />
     <ClInclude Include="GUIForm.h" />
+    <ClInclude Include="GUIImage.h" />
     <ClInclude Include="GUILayout.h" />
+    <ClInclude Include="GUIListItem.h" />
+    <ClInclude Include="GUIRadioButton.h" />
     <ClInclude Include="GUITextBox.h" />
     <ClInclude Include="GUITextInput.h" />
+    <ClInclude Include="GUIUnorderedList.h" />
     <ClInclude Include="GUIView.h" />
     <ClInclude Include="SimpleMesh.h" />
     <ClInclude Include="stb_image.h" />

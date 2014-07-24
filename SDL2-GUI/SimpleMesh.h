@@ -1,7 +1,8 @@
 #ifndef SIMPLE_MESH
 #define SIMPLE_MESH
 #include <GL\glew.h>
-
+//VERY Unfinished, and unlikely to be included in SDL2_GUI
+/*
 class SimpleMesh {
 private:
 	float* m_vertex_array; 
@@ -17,5 +18,6 @@ public:
 
 
 };
+*/
 
 #endif

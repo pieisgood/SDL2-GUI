@@ -40,16 +40,8 @@ void GUIView::renderPanel( GLuint texture, glm::vec2 position, glm::vec2 scale, 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void GUIView::renderText( std::string text , float pos_x, float pos_y, int size ) {
-
-}
-
 void GUIView::renderText( GLuint textVAO, float pos_x, float pos_y, int size, int numChars ) {
 	m_font->renderText( textVAO, pos_x, pos_y, size, numChars );
-}
-
-void GUIView::renderTextStash( std::string text , float pos_x, float pos_y, int size ) {
-
 }
 
 void GUIView::renderError( glm::vec2 position, glm::vec2 scale ){

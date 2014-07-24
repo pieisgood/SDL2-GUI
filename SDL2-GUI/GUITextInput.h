@@ -1,3 +1,31 @@
+/**
+ * \class GUITextInput
+ *
+ * \ingroup SDL2-GUI
+ *
+ * \brief Dynamic text input
+ *
+ * Recieves user text input and builds a string.
+ * Also renders the string to the screen.
+ * 
+ * 
+ *
+ * \note Should be used for user text input
+ *
+ * \author  Lee Jacobs 
+ *
+ * \version  1.0 
+ *
+ * \date 2014/06/10 
+ *
+ * Contact: leemichaeljacobs@gmail.com
+ *
+ * Created on: 2014/05/28
+ *
+ * $Id: doxygen-howto.html,v 1.5 2005/04/14 14:16:20 bv Exp $
+ *
+ */
+
 #ifndef GUITEXTINPUT
 #define GUITEXTINPUT
 #include"Element.h"

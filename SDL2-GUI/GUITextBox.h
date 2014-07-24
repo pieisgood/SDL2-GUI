@@ -1,3 +1,31 @@
+/**
+ * \class GUITextBox
+ *
+ * \ingroup SDL2-GUI
+ *
+ * \brief A text box for word wrapping
+ *
+ * Allows for word wrapping and aligned text input.
+ * 
+ * 
+ * 
+ *
+ * \note Should be used for all static text
+ *
+ * \author  Lee Jacobs 
+ *
+ * \version  1.0 
+ *
+ * \date 2014/06/10 
+ *
+ * Contact: leemichaeljacobs@gmail.com
+ *
+ * Created on: 2014/05/28
+ *
+ * $Id: doxygen-howto.html,v 1.5 2005/04/14 14:16:20 bv Exp $
+ *
+ */
+
 #ifndef GUITEXTBOX
 #define GUITEXTBOX
 #include "Element.h"
@@ -5,6 +33,7 @@
 class GUITextBox : public Element {
 private:
 	friend class GUIFactory;
+	glm::vec2 m_textPos;
 
 protected:
 
@@ -35,6 +64,7 @@ public:
 	virtual bool isOver(int x, int y);
 	virtual void onMouseMotion(SDL_Event* ev);
 	virtual void onMouseButton(SDL_Event* ev, GUIEvent* clicked);
+	virtual void onMouseScroll(SDL_Event* ev);
 };
 
 

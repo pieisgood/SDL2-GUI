@@ -1,3 +1,31 @@
+/**
+ * \class GUILayout
+ *
+ * \ingroup SDL2-GUI
+ *
+ * \brief Should work like an HTML div tag
+ *
+ * This class should provide the ability to 
+ * have relative placement of elements within
+ * certain boundaries. Like a sub window.
+ * 
+ *
+ * \note Needs to better defined
+ *
+ * \author  Lee Jacobs 
+ *
+ * \version  1.0 
+ *
+ * \date 2014/06/10 
+ *
+ * Contact: leemichaeljacobs@gmail.com
+ *
+ * Created on: 2014/05/28
+ *
+ * $Id: doxygen-howto.html,v 1.5 2005/04/14 14:16:20 bv Exp $
+ *
+ */
+
 #ifndef GUILAYOUT
 #define GUILAYOUT
 #include "Element.h"
@@ -39,6 +67,7 @@ public:
 	virtual bool isOver(int x, int y);
 	virtual void onMouseMotion(SDL_Event* ev);
 	virtual void onMouseButton(SDL_Event* ev, GUIEvent* clicked);
+	virtual void onMouseScroll( SDL_Event* ev );
 };
 
 

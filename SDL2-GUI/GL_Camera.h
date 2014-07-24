@@ -7,21 +7,26 @@
 
 class GL_Camera {
 private:
-	glm::vec3 m_pos; //our camera position
-	glm::vec3 m_dir; //camera look direction
-	glm::vec3 m_up; //up direction
-	glm::vec3 m_right; //right vector
-	float m_pitch;
-	float m_yaw;
-	float m_speed; //speed in the xz plane
-	float m_yaw_speed; //rotation speed
-	glm::mat4 m_view; //our view matrix
+	glm::vec3 m_pos; //Camera position in R^3
+	glm::vec3 m_dir; //Direction the camera is looking
+	glm::vec3 m_up;  //Cameras up direction
+	glm::vec3 m_right; //Cameras right direction
+	float m_pitch; //Current pitch in radians
+	float m_yaw; //Current yaw in radians
+	float m_speed; //Speed in the xz plane
+	float m_yaw_speed; //Rotation speed
+	glm::mat4 m_view;  //View Matrix
 
 public:
 
-	GL_Camera();
+	GL_Camera(): m_pos(glm::vec3(0.0,0.0,2.0)), m_dir(glm::vec3(0.0,0.0,1.0)),
+		m_up(glm::vec3(0.0,1.0,0.0)), m_yaw(0) {
+		m_right = glm::cross(m_dir, m_up);		
+	}
+
 	GL_Camera(glm::vec3 pos, glm::vec3 dir, glm::vec3 up, float speed, float yaw);
-	virtual ~GL_Camera();
+
+	~GL_Camera();
 
 	glm::mat4 lookAt(glm::vec3 target_pos);
 	void updatePosition(glm::vec3 delta);
@@ -34,21 +39,6 @@ public:
 	void leftMotion(float deltaTime);
 
 };
-
-GL_Camera::GL_Camera(){
-	m_pos.x = 0.0;
-	m_pos.y = 0.0;
-	m_pos.z = 2.0;
-	m_dir.x = 0.0;
-	m_dir.y = 0.0;
-	m_dir.z = -1.0;
-	m_up.x = 0.0;
-	m_up.y = 1.0;
-	m_up.z = 0.0;
-	m_yaw = 0;
-
-	m_right = glm::cross(m_dir, m_up);
-}
 
 GL_Camera::~GL_Camera(){
 
@@ -74,12 +64,15 @@ void GL_Camera::mouseRotation(float deltaX, float deltaY){
 void GL_Camera::forwardMotion(float deltaTime){
 	m_pos = m_pos + deltaTime*m_dir;
 }
+
 void GL_Camera::backwardMotion(float deltaTime){
 	m_pos = m_pos - deltaTime*m_dir;
 }
+
 void GL_Camera::rightMotion(float deltaTime){
 	m_pos = m_pos + deltaTime*m_right;
 }
+
 void GL_Camera::leftMotion(float deltaTime){
 	m_pos = m_pos - deltaTime*m_right;
 }

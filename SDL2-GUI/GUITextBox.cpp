@@ -13,8 +13,7 @@ GUITextBox::~GUITextBox(){
 
 void GUITextBox::draw(){
 	
-	m_view->renderTextStash( m_text,  m_pos.x , m_pos.y , 32 );
-	m_view->renderText( m_textVAO , m_pos.x, m_pos.y, 32 , m_text.size() );
+	m_view->renderText( m_textVAO , m_pos.x, m_textPos.y, 32 , m_text.size() );
 
 	std::vector<Element*>::iterator itr;
 	itr = m_children.begin();
@@ -58,3 +57,7 @@ void GUITextBox::onMouseButton(SDL_Event* ev, GUIEvent* clicked){
 		itr[0]->onMouseButton(ev, clicked);
 	}
 }
+
+void GUITextBox::onMouseScroll(SDL_Event* ev) {
+	m_textPos.y += ev->wheel.y;
+};
