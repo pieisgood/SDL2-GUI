@@ -13,7 +13,7 @@ void GUILayout::draw(){
 	//optional layout render goes here
 	//m_view->renderError(m_pos, m_scale);
 
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){
@@ -30,7 +30,7 @@ bool GUILayout::isOver(int x, int y){
 }
 
 void GUILayout::onClick(){
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){
@@ -43,7 +43,7 @@ void GUILayout::onMouseMotion(SDL_Event* ev){
 		return;
 	}
 
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){
@@ -51,12 +51,12 @@ void GUILayout::onMouseMotion(SDL_Event* ev){
 	}
 }
 
-void GUILayout::onMouseButton(SDL_Event* ev, GUIEvent* clicked){
+void GUILayout::onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked){
 	if( !(this->isOver(ev->button.x, ev->button.y)) ){
 		return;
 	}
 
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){
@@ -69,7 +69,7 @@ void GUILayout::onMouseScroll( SDL_Event* ev ) {
 	m_pos.y += ev->wheel.y;
 	m_screenPos.y -= ev->wheel.y*240;
 
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){

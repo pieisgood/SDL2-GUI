@@ -31,6 +31,7 @@
 #include<string>
 #include"GLSLShader.h"
 #include<vector>
+#include <memory>
 
 
 struct CharDescriptor
@@ -60,7 +61,7 @@ class GUIFont {
 
 private:
 	Charset m_charSet;
-	GLSLProgram* m_fontProgram;
+	std::shared_ptr<GLSLProgram> m_fontProgram;
 	GLuint m_fontTexture;
 	GLuint m_textVAO; //our vertex attributes for fonts/text
 	const char* m_fontData;
@@ -73,7 +74,7 @@ private:
 
 public:
 
-	GUIFont( GLuint fontTexture , const char* fontData , GLSLProgram* fontProgram );
+	GUIFont( GLuint fontTexture , const char* fontData , std::shared_ptr<GLSLProgram> fontProgram );
 	~GUIFont();
 
 

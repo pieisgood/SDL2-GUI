@@ -34,6 +34,7 @@
 #include <fstream>
 #include<map>
 #include<string>
+#include <memory>
 #include"GUIFont.h"
 
 //quad surface to render texture over
@@ -79,14 +80,14 @@ private:
 	GLuint m_vao; 
 	GLuint m_vbo; 
 	GLuint m_vbot; 
-	GLSLProgram* m_program;
+	std::shared_ptr<GLSLProgram> m_program;
 	ElementSurface m_surface; //Surface we are rendering to
 	GLuint m_errorTexture; //red texture for error checking
-	GUIFont* m_font;
+	std::shared_ptr<GUIFont> m_font;
 
 public:
 
-	GUIView( GLSLProgram* program );
+	GUIView( std::shared_ptr<GLSLProgram> program );
 	virtual ~GUIView();
 
 	/*!
@@ -212,7 +213,7 @@ public:
 	 *
 	 * \return void
 	 */
-	void assignFont( GUIFont* font ){
+	void assignFont( std::shared_ptr<GUIFont> font ){
 		m_font = font;
 	}
 

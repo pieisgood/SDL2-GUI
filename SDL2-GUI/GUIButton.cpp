@@ -36,7 +36,7 @@ void GUI2DButton::onMouseMotion(SDL_Event* ev){
 	}
 
 	//iterate over children
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){
@@ -44,7 +44,7 @@ void GUI2DButton::onMouseMotion(SDL_Event* ev){
 	}
 }
 
-void GUI2DButton::onMouseButton(SDL_Event* ev, GUIEvent* clicked){
+void GUI2DButton::onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked){
 
 	bool over = this->isOver(ev->button.x , ev->button.y) ;
 
@@ -67,7 +67,7 @@ void GUI2DButton::onMouseButton(SDL_Event* ev, GUIEvent* clicked){
 	}
 
 	//iterate over children
-	std::vector<Element*>::iterator itr;
+	std::vector<std::shared_ptr<Element>>::iterator itr;
 	itr = m_children.begin();
 
 	for(; itr != m_children.end(); itr++){

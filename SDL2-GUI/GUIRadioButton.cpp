@@ -8,7 +8,7 @@ void GUIRadioButton::draw() {
 
 }
 
-void GUIRadioButton::onMouseButton( SDL_Event* ev, GUIEvent* clicked ) {
+void GUIRadioButton::onMouseButton( SDL_Event* ev, std::shared_ptr<GUIEvent> clicked ) {
 	if( this->isOver( ev->button.x, ev->button.y ) ){
 		m_state = !m_state;
 	}

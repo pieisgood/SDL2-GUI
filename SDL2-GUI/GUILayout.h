@@ -33,7 +33,7 @@
 class GUILayout : public Element {
 private:
 	friend class GUIFactory;
-	GUIView* m_view;
+	std::shared_ptr<GUIView> m_view;
 
 protected:
 
@@ -53,7 +53,7 @@ protected:
 		m_scale = scale;
 	}
 
-	void assignView( GUIView* view ){
+	void assignView( std::shared_ptr<GUIView> view ){
 		m_view = view;
 	}
 
@@ -66,7 +66,7 @@ public:
 	virtual void onClick();
 	virtual bool isOver(int x, int y);
 	virtual void onMouseMotion(SDL_Event* ev);
-	virtual void onMouseButton(SDL_Event* ev, GUIEvent* clicked);
+	virtual void onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked);
 	virtual void onMouseScroll( SDL_Event* ev );
 };
 

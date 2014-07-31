@@ -2,9 +2,10 @@
 #include<iostream>
 #include<sstream>
 #include<vector>
+#include <memory>
 #include"StringUtils.h"
 
-GUIFont::GUIFont( GLuint fontTexture , const char* fontData , GLSLProgram* fontProgram ){
+GUIFont::GUIFont( GLuint fontTexture , const char* fontData , std::shared_ptr<GLSLProgram> fontProgram ){
 	m_fontTexture = fontTexture;
 	m_fontProgram = fontProgram;
 	m_alpha = 1.0;

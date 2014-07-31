@@ -129,7 +129,7 @@ public:
 	 *
 	 * \return
 	 */
-	virtual void onMouseButton(SDL_Event* ev, GUIEvent* clicked);
+	virtual void onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked);
 
 	/*!
 	 * \brief

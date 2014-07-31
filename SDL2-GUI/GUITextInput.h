@@ -28,6 +28,7 @@
 
 #ifndef GUITEXTINPUT
 #define GUITEXTINPUT
+#include <memory>
 #include"Element.h"
 
 class GUITextInput : public Element {
@@ -42,13 +43,13 @@ public:
 	virtual void onClick();
 	virtual bool isOver( int x, int y );
 	virtual void onMouseMotion( SDL_Event* ev );
-	virtual void onMouseButton( SDL_Event* ev, GUIEvent* clicked );
+	virtual void onMouseButton( SDL_Event* ev, std::shared_ptr<GUIEvent> clicked );
 	virtual void onKeyPress( SDL_Event* ev );
-	virtual void addChild( Element* child ){};
-	virtual void addBound( GUIBound* bound );
-	virtual void addParent( Element* parent );
+	virtual void addChild( std::shared_ptr<Element> child ){};
+	virtual void addBound( std::shared_ptr<GUIBound> bound );
+	virtual void addParent( std::shared_ptr<Element> parent );
 	virtual void assignLayer( unsigned int layer );
-	virtual void assignProgram( GLSLProgram* program );
+	virtual void assignProgram( std::shared_ptr<GLSLProgram> program );
 
 
 };

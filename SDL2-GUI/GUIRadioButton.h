@@ -71,7 +71,7 @@ public:
 	 * \param ev An sdl_event that should be a mouse button event
 	 * \param clicked A GUIEvent reference that will be filled in when the GUIManager handles a button event
 	 */
-	virtual void onMouseButton( SDL_Event* ev, GUIEvent* clicked );
+	virtual void onMouseButton( SDL_Event* ev, std::shared_ptr<GUIEvent> clicked );
 
 };
 

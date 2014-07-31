@@ -36,6 +36,7 @@
 #include "GUIView.h"
 #include <GL\glew.h>
 #include <glm\glm.hpp>
+#include <memory>
 
 enum {
 	LEFT = 0,
@@ -62,9 +63,9 @@ class Element {
 
 protected:
 
-	Element* m_parent; /*!< The parent Element to this Element */
-	GUIView* m_view; /*!< A view object to render this Element */
-	GUIBound* m_boundary; //a boundary to test hits on
+	std::shared_ptr<Element> m_parent; /*!< The parent Element to this Element */
+	std::shared_ptr<GUIView> m_view; /*!< A view object to render this Element */
+	std::shared_ptr<GUIBound> m_boundary; //a boundary to test hits on
 	GLuint m_elementVAO;
 	GLuint m_textVAO; /*!< Vertex Array Object to handle Text geometry and UV-Coords */
 	GLuint m_textVBOVerts; /*!< Vertex Buffer Object to hold text vertex data */
@@ -78,7 +79,7 @@ protected:
 	float m_height;
 	unsigned int m_textChars; //number of characters in this elements text
 	unsigned int m_layer; //layer to draw Element on
-	std::vector<Element* > m_children; //every element can have children
+	std::vector< std::shared_ptr<Element> > m_children; //every element can have children
 	
 public:
 
@@ -133,7 +134,7 @@ public:
 	 * \param ev An sdl_event that should be a mouse button event
 	 * \param clicked A GUIEvent reference that will be filled in when the GUIManager handles a button event
 	 */
-	virtual void onMouseButton( SDL_Event* ev, GUIEvent* clicked ) = 0;
+	virtual void onMouseButton( SDL_Event* ev, std::shared_ptr<GUIEvent> clicked ) = 0;
 
 	/*!
 	 * \brief Handles mouse scroll event, should be overriden
@@ -157,21 +158,21 @@ public:
 	 * \param child The child element to add to the child element list
 	 *
 	 */
-	virtual void addChild( Element* child );
+	virtual void addChild( std::shared_ptr<Element> child );
 
 	/*!
 	 * \brief add a bound to the element
 	 *
 	 * \param bound A GUIBound to add to the element
 	 */
-	virtual void addBound( GUIBound* bound );
+	virtual void addBound( std::shared_ptr<GUIBound> bound );
 
 	/*!
 	 * \brief add a parent element to this element
 	 *
 	 * \param parent A parent element to add to this element
 	 */
-	virtual void addParent( Element* parent );
+	virtual void addParent( std::shared_ptr<Element> parent );
 
 
 	/*!
@@ -181,7 +182,7 @@ public:
 	 *
 	 * \return
 	 */
-	virtual void assignView( GUIView* view ) {
+	virtual void assignView( std::shared_ptr<GUIView> view ) {
 		m_view = view;
 	}
 

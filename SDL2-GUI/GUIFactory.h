@@ -28,6 +28,7 @@
 
 #ifndef SDLGUIFACTORY
 #define SDLGUIFACTORY
+#include <memory>
 #include <iostream>
 #include <fstream>
 #include "GUIManager.h"
@@ -37,8 +38,8 @@
 class GUIFactory {
 private:
 		tinyxml2::XMLDocument* m_doc; //our XML document
-		GUIView* m_view;
-		GUIManager* m_manager;
+		std::shared_ptr<GUIView> m_view;
+		std::shared_ptr<GUIManager> m_manager;
 		int m_windowWidth;
 		int m_windowHeight;
 
@@ -49,7 +50,7 @@ private:
 	 *
 	 * \return
 	 */
-	Element* newElement( tinyxml2::XMLElement* type, Element* parent );
+	std::shared_ptr<Element> newElement( tinyxml2::XMLElement* type, std::shared_ptr<Element> parent );
 
 	/*!
 	 * \brief
@@ -58,7 +59,7 @@ private:
 	 *
 	 * \return
 	 */
-	Element* newButton(int x, int y, int width, int height, const char* id, Element* parent, const char* texture, glm::vec2 scale);
+	std::shared_ptr<Element> newButton(int x, int y, int width, int height, const char* id, std::shared_ptr<Element> parent, const char* texture, glm::vec2 scale);
 
 	/*!
 	 * \brief
@@ -67,7 +68,7 @@ private:
 	 *
 	 * \return
 	 */
-	Element* newLayout(int x, int y, int width, int height, const char* id, Element* parent, glm::vec2 scale);
+	std::shared_ptr<Element> newLayout(int x, int y, int width, int height, const char* id, std::shared_ptr<Element> parent, glm::vec2 scale);
 
 	/*!
 	 * \brief
@@ -76,7 +77,7 @@ private:
 	 *
 	 * \return
 	 */
-	Element* newTextBox( int x, int y, int width, int height, const char* id, Element* parent, glm::vec2 scale, std::string text, GUIView* view);
+	std::shared_ptr<Element> newTextBox( int x, int y, int width, int height, const char* id, std::shared_ptr<Element> parent, glm::vec2 scale, std::string text, std::shared_ptr<GUIView> view);
 
 	/*!
 	 * \brief
@@ -85,7 +86,7 @@ private:
 	 *
 	 * \return
 	 */
-	Element* handleButton(tinyxml2::XMLElement* buttonElement, Element* parent);
+	std::shared_ptr<Element> handleButton(tinyxml2::XMLElement* buttonElement, std::shared_ptr<Element> parent);
 
 	/*!
 	 * \brief
@@ -94,7 +95,7 @@ private:
 	 *
 	 * \return
 	 */
-	Element* handleLayout(tinyxml2::XMLElement* layoutElement, Element* parent);
+	std::shared_ptr<Element> handleLayout(tinyxml2::XMLElement* layoutElement, std::shared_ptr<Element> parent);
 
 	/*!
 	 * \brief
@@ -103,7 +104,7 @@ private:
 	 *
 	 * \return
 	 */
-	GUIFont* newGUIFont(const char* fontTexture , const char* fontData , GLSLProgram* fontProgram);
+	std::shared_ptr<GUIFont> newGUIFont(const char* fontTexture , const char* fontData , std::shared_ptr<GLSLProgram> fontProgram);
 
 	/*!
 	 * \brief
@@ -121,7 +122,7 @@ private:
 	 *
 	 * \return
 	 */
-	void iterateTree( tinyxml2::XMLElement* node, Element* parent);
+	void iterateTree( tinyxml2::XMLElement* node, std::shared_ptr<Element> parent);
 
 	/*!
 	 * \brief
@@ -139,7 +140,7 @@ private:
 	 *
 	 * \return
 	 */
-	GLSLProgram* newProgram( const char* vertShader, const char* fragShader);
+	std::shared_ptr<GLSLProgram> newProgram( const char* vertShader, const char* fragShader);
 
 	/*!
 	 * \brief
@@ -157,7 +158,7 @@ private:
 	 *
 	 * \return
 	 */
-	glm::vec4 createStencil( Element* el, Element* parent );
+	glm::vec4 createStencil( std::shared_ptr<Element> el, std::shared_ptr<Element> parent );
 
 	/*!
 	 * \brief
@@ -166,7 +167,7 @@ private:
 	 *
 	 * \return
 	 */
-	void alignElementLeft( Element* el, Element* parent );
+	void alignElementLeft( std::shared_ptr<Element> el, std::shared_ptr<Element> parent );
 
 	/*!
 	 * \brief
@@ -175,7 +176,7 @@ private:
 	 *
 	 * \return
 	 */
-	void alignElementRight( Element* el, Element* parent );
+	void alignElementRight( std::shared_ptr<Element> el, std::shared_ptr<Element> parent );
 
 	/*!
 	 * \brief
@@ -184,7 +185,7 @@ private:
 	 *
 	 * \return
 	 */
-	void alignElementMiddle( Element* el, Element* parent );
+	void alignElementMiddle( std::shared_ptr<Element> el, std::shared_ptr<Element> parent );
 
 	/*!
 	 * \brief
@@ -193,7 +194,7 @@ private:
 	 *
 	 * \return
 	 */
-	void alignElementCenter( Element* el, Element* parent );
+	void alignElementCenter( std::shared_ptr<Element> el, std::shared_ptr<Element> parent );
 
 public:
 
@@ -222,7 +223,7 @@ public:
 	 *
 	 * \return
 	 */
-	GUIManager* newGUIManager( const char* xmlFile );
+	std::shared_ptr<GUIManager> newGUIManager( const char* xmlFile );
 
 
 };

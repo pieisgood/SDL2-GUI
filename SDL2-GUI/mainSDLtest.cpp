@@ -38,7 +38,7 @@ int main(int argc, char **argv){
 
 	GUIFactory* testFactory = new GUIFactory(g_pWindow);
 
-	GUIManager* testManager = testFactory->newGUIManager("xmlGUITest.xml");
+	std::shared_ptr<GUIManager> testManager = testFactory->newGUIManager("xmlGUITest.xml");
 	
 
 	init();
@@ -53,7 +53,7 @@ int main(int argc, char **argv){
 	unsigned int tDelta = 0;
 	std::cout << key[SDLK_q];
 	std::cout << mouse;
-	GUIEvent guiEvent;
+	std::shared_ptr<GUIEvent> guiEvent(new GUIEvent());
 
 	int frameCount = 0;
 	int msSum = 0;
@@ -75,10 +75,10 @@ int main(int argc, char **argv){
 			frameCount = 0;
 		}
 
-		testManager->pollGUIEvent(&guiEvent);
+		testManager->pollGUIEvent(guiEvent);
 
-		if(guiEvent.type == GUIEventType::GUI_BUTTON){
-			printf("you clicked button: %s", guiEvent.button.id);
+		if(guiEvent->type == GUIEventType::GUI_BUTTON){
+			printf("you clicked button: %s", guiEvent->button.id);
 		}
 
 		if(key[SDL_SCANCODE_A]){

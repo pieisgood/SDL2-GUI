@@ -63,7 +63,7 @@ public:
 	virtual void onClick();
 	virtual bool isOver(int x, int y);
 	virtual void onMouseMotion(SDL_Event* ev);
-	virtual void onMouseButton(SDL_Event* ev, GUIEvent* clicked);
+	virtual void onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked);
 	virtual void onMouseScroll(SDL_Event* ev);
 };
 

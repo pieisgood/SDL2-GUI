@@ -9,20 +9,20 @@ GUIFactory::~GUIFactory(){
 
 };
 
-GUIManager* GUIFactory::newGUIManager( const char* xmlFile ){
+std::shared_ptr<GUIManager> GUIFactory::newGUIManager( const char* xmlFile ){
 	m_doc = new tinyxml2::XMLDocument();
 
-	GLSLProgram* program = this->newProgram( "panel.vert", "panel.frag" );
-	GLSLProgram* textProgram = this->newProgram( "text.vert", "text.frag" );
-	m_view = new GUIView( program );
+	std::shared_ptr<GLSLProgram> program = this->newProgram( "panel.vert", "panel.frag" );
+	std::shared_ptr<GLSLProgram> textProgram = this->newProgram( "text.vert", "text.frag" );
+	m_view = std::shared_ptr<GUIView>(new GUIView( program ));
 	m_view->assignFont( this->newGUIFont("C:\\Users\\Lee\\Documents\\Visual Studio 2012\\Projects\\SDL2-GUI\\SDL2-GUI\\content\\Fonts\\VeraMoBI.ttf_sdf.png", "C:\\Users\\Lee\\Documents\\Visual Studio 2012\\Projects\\SDL2-GUI\\SDL2-GUI\\content\\Fonts\\VeraMoBI.txt", textProgram) );
 	m_view->assignErrorTexture( newTexture("error.bmp") );
 	
 
-	m_manager = new GUIManager();
+	m_manager = std::shared_ptr<GUIManager>(new GUIManager());
 	m_manager->assignView(m_view);
 	m_manager->assignProgram(program);
-	m_manager->assignFPS( (GUITextBox*) newTextBox( 100, 40, 100, 100, "fps_box", NULL, glm::vec2(1.0, 1.0), "FPS: 100000", m_view) );
+	m_manager->assignFPS( std::static_pointer_cast<GUITextBox>(newTextBox( 100, 40, 100, 100, "fps_box", NULL, glm::vec2(1.0, 1.0), "FPS: 100000", m_view) ));
 
 	if(m_doc->LoadFile(xmlFile)){
 		printf("loading xml file error");
@@ -36,9 +36,9 @@ GUIManager* GUIFactory::newGUIManager( const char* xmlFile ){
 	return m_manager;
 }
 
-Element* GUIFactory::newTextBox( int x, int y, int width, int height, const char* id, Element* parent, glm::vec2 scale, std::string text, GUIView* view){
+std::shared_ptr<Element> GUIFactory::newTextBox( int x, int y, int width, int height, const char* id, std::shared_ptr<Element> parent, glm::vec2 scale, std::string text, std::shared_ptr<GUIView> view){
 
-	GUITextBox* outTextBox = new GUITextBox();
+	std::shared_ptr<GUITextBox> outTextBox = std::shared_ptr<GUITextBox>(new GUITextBox());
 	outTextBox->assignView( view );
 	outTextBox->assignHeight( height );
 	outTextBox->assignWidth( width );
@@ -52,9 +52,9 @@ Element* GUIFactory::newTextBox( int x, int y, int width, int height, const char
 	return outTextBox;
 }
 
-Element* GUIFactory::newButton(int x, int y, int width, int height, const char* id, Element* parent, const char* texture, glm::vec2 scale){
+std::shared_ptr<Element> GUIFactory::newButton(int x, int y, int width, int height, const char* id, std::shared_ptr<Element> parent, const char* texture, glm::vec2 scale){
 
-	GUI2DButton* outButton = new GUI2DButton();
+	std::shared_ptr<GUI2DButton> outButton = std::shared_ptr<GUI2DButton>(new GUI2DButton());
 	outButton->assignHeight(height);
 	outButton->assignWidth(width);
 	outButton->assignId(id);
@@ -68,9 +68,9 @@ Element* GUIFactory::newButton(int x, int y, int width, int height, const char* 
 	return outButton;
 }
 
-Element* GUIFactory::newLayout(int x, int y, int width, int height, const char* id, Element* parent, glm::vec2 scale){
+std::shared_ptr<Element> GUIFactory::newLayout(int x, int y, int width, int height, const char* id, std::shared_ptr<Element> parent, glm::vec2 scale){
 
-	GUILayout* outLayout = new GUILayout();
+	std::shared_ptr<GUILayout> outLayout = std::shared_ptr<GUILayout>(new GUILayout());
 	outLayout->assignHeight(height);
 	outLayout->assignWidth(width);
 	outLayout->assignPosition( this->getPos(x + width/2, y + height/2) );
@@ -81,15 +81,15 @@ Element* GUIFactory::newLayout(int x, int y, int width, int height, const char* 
 	return outLayout;
 }
 
-GUIFont* GUIFactory::newGUIFont(const char* fontTexture , const char* fontData , GLSLProgram* fontProgram){
+std::shared_ptr<GUIFont> GUIFactory::newGUIFont(const char* fontTexture , const char* fontData , std::shared_ptr<GLSLProgram> fontProgram){
 
 	GLuint textTexture = this->newTexture( fontTexture );
-	GUIFont* localFont = new GUIFont( textTexture, fontData, fontProgram );
+	std::shared_ptr<GUIFont> localFont = std::shared_ptr<GUIFont>(new GUIFont( textTexture, fontData, fontProgram ));
 
 	return localFont;
 }
 
-glm::vec4 GUIFactory::createStencil( Element* el, Element* parent ) {
+glm::vec4 GUIFactory::createStencil( std::shared_ptr<Element> el, std::shared_ptr<Element> parent ) {
 	glm::vec4 stencil; //represents the x,y position and width and height
 
 	//need parameters defining a stencil for the element
@@ -102,13 +102,13 @@ glm::vec4 GUIFactory::createStencil( Element* el, Element* parent ) {
 }
 
 
-Element* GUIFactory::newElement( tinyxml2::XMLElement* type, Element* parent ){
+std::shared_ptr<Element> GUIFactory::newElement( tinyxml2::XMLElement* type, std::shared_ptr<Element> parent ){
 	const char* name = type->Name();
 	if(std::strcmp( name, "button") == 0){
 		float x = type->IntAttribute("width");
 		float y = type->IntAttribute("height");
 
-		Element* button = newButton( type->IntAttribute("x"), type->IntAttribute("y"),
+		std::shared_ptr<Element> button = newButton( type->IntAttribute("x"), type->IntAttribute("y"),
 			type->IntAttribute("width"), type->IntAttribute("height"), type->Attribute("id"),
 			parent, type->Attribute("texture"), glm::vec2(x/m_windowWidth, y/m_windowHeight) );
 
@@ -123,7 +123,7 @@ Element* GUIFactory::newElement( tinyxml2::XMLElement* type, Element* parent ){
 		float x = type->IntAttribute("width");
 		float y = type->IntAttribute("height");
 
-		Element* layout = newLayout( type->IntAttribute("x"), type->IntAttribute("y"),
+		std::shared_ptr<Element> layout = newLayout( type->IntAttribute("x"), type->IntAttribute("y"),
 			type->IntAttribute("width"), type->IntAttribute("height"), type->Attribute("id"),
 			parent, glm::vec2(x/m_windowWidth, y/m_windowHeight));
 
@@ -142,7 +142,7 @@ Element* GUIFactory::newElement( tinyxml2::XMLElement* type, Element* parent ){
 			boxText.append(" ");
 		}
 
-		Element* textBox = newTextBox( type->IntAttribute("x"), type->IntAttribute("y"),
+		std::shared_ptr<Element> textBox = newTextBox( type->IntAttribute("x"), type->IntAttribute("y"),
 			type->IntAttribute("width"), type->IntAttribute("height"), type->Attribute("id"),
 			parent, glm::vec2(x, y), boxText , m_view);
 
@@ -153,16 +153,16 @@ Element* GUIFactory::newElement( tinyxml2::XMLElement* type, Element* parent ){
 		return textBox;
 	}
 	else if(std::strcmp(name,"window") == 0){
-		Element* window = newLayout(0, 0 ,  m_windowWidth, m_windowHeight, "SDL_WINDOW", parent, glm::vec2(1.0, 1.0));
+		std::shared_ptr<Element> window = newLayout(0, 0 ,  m_windowWidth, m_windowHeight, "SDL_WINDOW", parent, glm::vec2(1.0, 1.0));
 		m_manager->assignWindow(window);
 		window->assignView(m_view);
 		return window;
 	}
 }
 
-void GUIFactory::iterateTree( tinyxml2::XMLElement* node, Element* parent){
+void GUIFactory::iterateTree( tinyxml2::XMLElement* node, std::shared_ptr<Element> parent){
 
-	Element* element = newElement( node->ToElement(), parent);
+	std::shared_ptr<Element> element = newElement( node->ToElement(), parent);
 
 	for( tinyxml2::XMLElement* loopNode = node->FirstChildElement(); loopNode != NULL; loopNode=loopNode->NextSiblingElement()){
 		iterateTree(loopNode, element);
@@ -236,8 +236,8 @@ GLuint GUIFactory::newTexture(const char* file){
 	return localTexture;
 }
 
-GLSLProgram* GUIFactory::newProgram( const char* vertShader, const char* fragShader){
-	GLSLProgram* program = new GLSLProgram();
+std::shared_ptr<GLSLProgram> GUIFactory::newProgram( const char* vertShader, const char* fragShader){
+	std::shared_ptr<GLSLProgram> program = std::shared_ptr<GLSLProgram>(new GLSLProgram());
 	program->compileShaderFromFile(vertShader, GLSLShader::VERTEX);
 	program->compileShaderFromFile(fragShader, GLSLShader::FRAGMENT);
 	program->link();

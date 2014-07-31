@@ -1,6 +1,6 @@
 #include"GUIView.h"
 
-GUIView::GUIView( GLSLProgram* program){
+GUIView::GUIView( std::shared_ptr<GLSLProgram> program){
 	//accept compiled GLSL program
 	m_program = program;
 	glGenVertexArrays(1, &m_vao);

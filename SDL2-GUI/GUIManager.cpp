@@ -2,17 +2,18 @@
 #include<iostream>
 
 GUIManager::GUIManager(){
-	m_event = new GUIEvent();
+	m_event = std::shared_ptr<GUIEvent>(new GUIEvent());
 	m_event->type = GUI_NONE;
 }
 
-GUIManager::GUIManager(Element* window){
+GUIManager::GUIManager(std::shared_ptr<Element> window){
 	assignWindow(window);
 }
 
-void GUIManager::pollGUIEvent(GUIEvent* in_event){
+void GUIManager::pollGUIEvent(std::shared_ptr<GUIEvent> in_event){
+	//possible problems with this code
 	*in_event = *m_event;
-	m_event = new GUIEvent();
+	m_event = std::shared_ptr<GUIEvent> (new GUIEvent());
 	m_event->type = GUI_NONE;
 }
 
@@ -74,11 +75,11 @@ void GUIManager::onEvent(SDL_Event* event){
 	}
 }
 
-void GUIManager::assignProgram(GLSLProgram* program){
+void GUIManager::assignProgram(std::shared_ptr<GLSLProgram> program){
 	m_panelProgram = program;
 }
 
-void GUIManager::assignWindow(Element* window){
+void GUIManager::assignWindow(std::shared_ptr<Element> window){
 	glGenVertexArrays(1, &m_windowVAO);
 	glBindVertexArray(m_windowVAO);
 	m_window = window;
