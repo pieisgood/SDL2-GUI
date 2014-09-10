@@ -1,5 +1,7 @@
 #include"GUIRadioButton.h"
 
+namespace SDLGUI {
+
 GUIRadioButton::GUIRadioButton(): m_state(false) {}
 
 GUIRadioButton::~GUIRadioButton(){}
@@ -20,3 +22,5 @@ void GUIRadioButton::onClick(){}
 bool GUIRadioButton::isOver(int x, int y ) { return false; }
 
 void GUIRadioButton::onMouseMotion( SDL_Event* ev ) {}
+
+}

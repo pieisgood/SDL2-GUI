@@ -28,6 +28,8 @@
 #define GUIBOXBOUND
 #include "GUIBound.h"
 
+namespace SDLGUI {
+
 class GUIBoxBound : public GUIBound {
 private:
 	float m_width;
@@ -75,6 +77,6 @@ public:
 	void assignPos(glm::vec2 pos);
 };
 
-
+}
 
 #endif

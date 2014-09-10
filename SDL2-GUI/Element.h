@@ -38,6 +38,8 @@
 #include <glm\glm.hpp>
 #include <memory>
 
+namespace SDLGUI {
+
 enum {
 	LEFT = 0,
 	RIGHT,
@@ -280,7 +282,7 @@ public:
 
 };
 
-
+}
 
 
 

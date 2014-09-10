@@ -36,6 +36,7 @@
 #include <glm\gtc\type_ptr.hpp>
 #include <glm\gtx\transform.hpp>
 
+namespace SDLGUI {
 
 class GUIManager {
 
@@ -88,6 +89,6 @@ public:
 	
 };
 
-
+}
 
 #endif

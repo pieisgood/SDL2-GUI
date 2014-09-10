@@ -28,6 +28,7 @@
 
 #ifndef GUIVIEW
 #define GUIVIEW
+
 #include "GLSLShader.h"
 #include<glm\glm.hpp>
 #include <stdio.h>
@@ -36,6 +37,8 @@
 #include<string>
 #include <memory>
 #include"GUIFont.h"
+
+namespace SDLGUI {
 
 //quad surface to render texture over
 struct ElementSurface {
@@ -220,6 +223,6 @@ public:
 
 };
 
-
+}
 
 #endif

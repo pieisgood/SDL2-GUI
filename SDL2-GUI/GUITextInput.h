@@ -31,6 +31,8 @@
 #include <memory>
 #include"Element.h"
 
+namespace SDLGUI {
+
 class GUITextInput : public Element {
 
 private:
@@ -53,5 +55,7 @@ public:
 
 
 };
+
+}
 
 #endif

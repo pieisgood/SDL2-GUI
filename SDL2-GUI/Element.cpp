@@ -1,17 +1,21 @@
 #include"Element.h"
 
+namespace SDLGUI {
+
 Element::~Element(){
 
 }
 
-void Element::addChild( Element* child ){
+void Element::addChild( std::shared_ptr<Element> child ){
 	m_children.push_back(child);
 }
 
-void Element::addBound(GUIBound* bound){
+void Element::addBound( std::shared_ptr<GUIBound> bound ){
 	m_boundary = bound;
 }
 
-void Element::addParent( Element* parent ){
+void Element::addParent( std::shared_ptr<Element> parent ){
 	m_parent = parent;
+}
+
 }

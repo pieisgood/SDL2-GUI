@@ -1,5 +1,7 @@
 #include"GUITextBox.h"
 
+namespace SDLGUI {
+
 GUITextBox::GUITextBox(){
 	m_pos.x = 0;
 	m_pos.y = 0;
@@ -61,3 +63,5 @@ void GUITextBox::onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked)
 void GUITextBox::onMouseScroll(SDL_Event* ev) {
 	m_textPos.y += ev->wheel.y;
 };
+
+}

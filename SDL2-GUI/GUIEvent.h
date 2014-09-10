@@ -3,6 +3,8 @@
 #ifndef GUIEVENT
 #define GUIEVENT
 
+namespace SDLGUI {
+
 enum GUIEventType {
 	GUI_NONE,
 	GUI_BUTTON,
@@ -20,6 +22,6 @@ typedef struct GUIEvent{
 	ButtonEvent button;
 } GUIEvent;
 
-
+}
 
 #endif

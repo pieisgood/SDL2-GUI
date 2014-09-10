@@ -1,6 +1,8 @@
 #include"GUIManager.h"
 #include<iostream>
 
+namespace SDLGUI {
+
 GUIManager::GUIManager(){
 	m_event = std::shared_ptr<GUIEvent>(new GUIEvent());
 	m_event->type = GUI_NONE;
@@ -128,5 +130,7 @@ void GUIManager::assignWindow(std::shared_ptr<Element> window){
 }
 
 GUIManager::~GUIManager(){
+
+}
 
 }

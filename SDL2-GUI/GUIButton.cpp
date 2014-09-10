@@ -1,5 +1,8 @@
 #include"GUIButton.h"
 #include<iostream>
+
+namespace SDLGUI {
+
 GUI2DButton::GUI2DButton(){
 	m_id = "";
 }
@@ -79,4 +82,6 @@ void GUI2DButton::onMouseButton(SDL_Event* ev, std::shared_ptr<GUIEvent> clicked
 void GUI2DButton::onMouseScroll(SDL_Event* ev) {
 	m_pos.y += ev->wheel.y;
 	m_screenPos.y -= ev->wheel.y*240;
+}
+
 }

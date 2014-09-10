@@ -29,6 +29,8 @@
 
 #include"Element.h"
 
+namespace SDLGUI {
+
 class GUIListItem : public Element {
 
 private:
@@ -36,5 +38,7 @@ private:
 public:
 
 };
+
+}
 
 #endif

@@ -149,5 +149,14 @@
     <ClInclude Include="GUIRadioButton.h">
       <Filter>Header Files\GUI_Components</Filter>
     </ClInclude>
+    <ClInclude Include="GUIImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIListItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIUnorderedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

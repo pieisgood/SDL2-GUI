@@ -4,6 +4,7 @@
 GL_Camera g_cam = GL_Camera();
 #include "tut1.h"
 #include <SDL.h>
+#include <vld.h>
 
 SDL_Window* g_pWindow = 0;
 SDL_Renderer* g_pRenderer  = 0;
@@ -11,12 +12,13 @@ SDL_GLContext GL_Context = 0;
 void CreateOGLContext();
 
 
-GUIManager* testGUISystem(SDL_Window* window);
+SDLGUI::GUIManager* testGUISystem(SDL_Window* window);
 
 int main(int argc, char **argv){
+
 	CreateOGLContext();
 	SDL_Event ourEvents;
-	GUIManager* localManager;
+	SDLGUI::GUIManager* localManager;
 	bool running = true;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
@@ -36,9 +38,9 @@ int main(int argc, char **argv){
 	}
 
 
-	GUIFactory* testFactory = new GUIFactory(g_pWindow);
+	SDLGUI::GUIFactory* testFactory = new SDLGUI::GUIFactory(g_pWindow);
 
-	std::shared_ptr<GUIManager> testManager = testFactory->newGUIManager("xmlGUITest.xml");
+	std::shared_ptr<SDLGUI::GUIManager> testManager = testFactory->newGUIManager("xmlGUITest.xml");
 	
 
 	init();
@@ -53,7 +55,7 @@ int main(int argc, char **argv){
 	unsigned int tDelta = 0;
 	std::cout << key[SDLK_q];
 	std::cout << mouse;
-	std::shared_ptr<GUIEvent> guiEvent(new GUIEvent());
+	std::shared_ptr<SDLGUI::GUIEvent> guiEvent(new SDLGUI::GUIEvent());
 
 	int frameCount = 0;
 	int msSum = 0;
@@ -77,7 +79,7 @@ int main(int argc, char **argv){
 
 		testManager->pollGUIEvent(guiEvent);
 
-		if(guiEvent->type == GUIEventType::GUI_BUTTON){
+		if(guiEvent->type == SDLGUI::GUIEventType::GUI_BUTTON){
 			printf("you clicked button: %s", guiEvent->button.id);
 		}
 

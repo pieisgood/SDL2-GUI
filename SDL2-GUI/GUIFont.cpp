@@ -5,6 +5,8 @@
 #include <memory>
 #include"StringUtils.h"
 
+namespace SDLGUI {
+
 GUIFont::GUIFont( GLuint fontTexture , const char* fontData , std::shared_ptr<GLSLProgram> fontProgram ){
 	m_fontTexture = fontTexture;
 	m_fontProgram = fontProgram;
@@ -315,4 +317,6 @@ bool GUIFont::parseFont( std::istream& Stream ) {
 	}
 
 	return true;
+}
+
 }

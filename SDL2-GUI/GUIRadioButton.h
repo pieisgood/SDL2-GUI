@@ -27,6 +27,7 @@
 #define GUI_RADIO_BUTTON
 #include"Element.h"
 
+namespace SDLGUI {
 
 class GUIRadioButton : public Element {
 private:
@@ -75,5 +76,6 @@ public:
 
 };
 
+}
 
 #endif

@@ -28,11 +28,15 @@
 
 #include"Element.h"
 
+namespace SDLGUI {
+
 class GUIImage : public Element {
 private:
 
 public:
 
 };
+
+}
 
 #endif

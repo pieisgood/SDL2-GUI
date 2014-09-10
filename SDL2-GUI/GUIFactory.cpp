@@ -1,6 +1,8 @@
 #include"GUIFactory.h"
 #include"stb_image.h"
 
+namespace SDLGUI {
+
 GUIFactory::GUIFactory(SDL_Window* window) {
 	SDL_GetWindowSize(window, &m_windowWidth, &m_windowHeight);
 };
@@ -248,4 +250,6 @@ glm::vec2 GUIFactory::getPos( float x, float y ){
 	float xPos = (2*x - (float)m_windowWidth)/(float)m_windowWidth;
 	float yPos = ((float)m_windowHeight - 2*y)/(float)m_windowHeight;
 	return glm::vec2(xPos, yPos);
+}
+
 }

@@ -30,6 +30,9 @@
 #define GUILAYOUT
 #include "Element.h"
 
+
+namespace SDLGUI {
+
 class GUILayout : public Element {
 private:
 	friend class GUIFactory;
@@ -70,5 +73,6 @@ public:
 	virtual void onMouseScroll( SDL_Event* ev );
 };
 
+}
 
 #endif

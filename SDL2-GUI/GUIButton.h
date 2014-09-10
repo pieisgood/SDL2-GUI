@@ -31,6 +31,8 @@
 #include "Element.h"
 #include <glm\glm.hpp>
 
+namespace SDLGUI {
+
 class GUI2DButton : public Element {
 private:
 	friend class GUIFactory;
@@ -142,6 +144,6 @@ public:
 
 };
 
-
+}
 
 #endif

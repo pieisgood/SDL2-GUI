@@ -30,6 +30,8 @@
 
 #include"Element.h"
 
+namespace SDLGUI {
+
 class GUIUnorderedList : public Element {
 
 private:
@@ -38,5 +40,7 @@ public:
 
 
 };
+
+}
 
 #endif

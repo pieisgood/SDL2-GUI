@@ -47,13 +47,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\SDL2-2.0.1\include;C:\Users\Lee\Desktop\assimp--3.0.1270-sdk\include;C:\Users\Lee\Desktop\jansson-2.5\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio 11.0\VC\lib;C:\SDL2-2.0.1\lib\x86;C:\Program Files\Assimp\lib\x86;C:\Users\Lee\Desktop\jansson-2.5\win32\vs2010\Output\Debug;C:\Users\Lee\Downloads\tinyxml2-master\tinyxml2\bin\Win32-Debug-Dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32.lib;assimp.lib;gltextD.lib;jansson.lib;tinyxml2.lib;freetype.lib;libdrawtext.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32.lib;assimp.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <AdditionalOptions>/verbose:lib</AdditionalOptions>
     </Link>

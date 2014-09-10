@@ -30,6 +30,8 @@
 #define GUIFORM
 #include"Element.h"
 
+namespace SDLGUI {
+
 class GUIForm : public Element {
 private:
 	std::vector< std::shared_ptr<Element> > m_inputs; //the list of inputs we will recieve
@@ -37,5 +39,7 @@ private:
 public:
 
 };
+
+}
 
 #endif

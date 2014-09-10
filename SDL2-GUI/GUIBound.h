@@ -30,6 +30,8 @@
 #define GUIBOUND
 #include <glm\glm.hpp>
 
+namespace SDLGUI {
+
 class GUIBound {
 
 public:
@@ -63,5 +65,7 @@ public:
 	virtual bool isHit( float mouse_x, float mouse_y ) = 0;
 
 };
+
+}
 
 #endif

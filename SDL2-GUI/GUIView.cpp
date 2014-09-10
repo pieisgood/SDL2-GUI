@@ -1,5 +1,7 @@
 #include"GUIView.h"
 
+namespace SDLGUI {
+
 GUIView::GUIView( std::shared_ptr<GLSLProgram> program){
 	//accept compiled GLSL program
 	m_program = program;
@@ -60,4 +62,6 @@ void GUIView::prepareRenderer(){
 
 void GUIView::cleanRenderer(){
 	glUseProgram(0);
+}
+
 }

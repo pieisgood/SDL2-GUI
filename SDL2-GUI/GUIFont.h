@@ -33,6 +33,7 @@
 #include<vector>
 #include <memory>
 
+namespace SDLGUI {
 
 struct CharDescriptor
 {
@@ -165,5 +166,7 @@ public:
 	void textListFill( std::string text, std::vector<float> &Verts, std::vector<float> &Texcoords , int CurY = 0 , int CurX = 0 );
 
 };
+
+}
 
 #endif

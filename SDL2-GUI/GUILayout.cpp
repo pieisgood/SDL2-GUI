@@ -1,5 +1,8 @@
 #include"GUILayout.h"
 #include<iostream>
+
+namespace SDLGUI {
+
 GUILayout::GUILayout()
 	: Element(){
 
@@ -75,4 +78,6 @@ void GUILayout::onMouseScroll( SDL_Event* ev ) {
 	for(; itr != m_children.end(); itr++){
 		itr[0]->onMouseScroll(ev);
 	}
+}
+
 }

@@ -30,6 +30,8 @@
 #define GUITEXTBOX
 #include "Element.h"
 
+namespace SDLGUI {
+
 class GUITextBox : public Element {
 private:
 	friend class GUIFactory;
@@ -67,6 +69,6 @@ public:
 	virtual void onMouseScroll(SDL_Event* ev);
 };
 
-
+}
 
 #endif

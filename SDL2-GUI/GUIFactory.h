@@ -34,6 +34,7 @@
 #include "GUIManager.h"
 #include "tinyxml2.h"
 
+namespace SDLGUI {
 
 class GUIFactory {
 private:
@@ -229,7 +230,7 @@ public:
 };
 
 
-
+}
 
 
 

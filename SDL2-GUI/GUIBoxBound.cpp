@@ -1,5 +1,7 @@
 #include"GUIBoxBound.h"
 
+namespace SDLGUI {
+
 GUIBoxBound::GUIBoxBound() {
 	m_width = 0;
 	m_height = 0;
@@ -29,4 +31,6 @@ void GUIBoxBound::assignHeight( float height ) {
 
 void GUIBoxBound::assignPos( glm::vec2 pos ) {
 	m_pos = pos;
+}
+
 }
