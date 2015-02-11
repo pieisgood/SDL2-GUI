@@ -1,5 +1,5 @@
 #include"GUIFactory.h"
-#include"stb_image.h"
+#include"TextureLoading.h"
 
 namespace SDLGUI {
 
@@ -171,7 +171,7 @@ void GUIFactory::iterateTree( tinyxml2::XMLElement* node, std::shared_ptr<Elemen
 	}
 }
 
-unsigned char* GUIFactory::loadImage(const char* file, int* x, int* y){
+/*unsigned char* GUIFactory::loadImage(const char* file, int* x, int* y){
 	int n;
 	int force_channels = 4;
 	unsigned char* image_data = stbi_load (file, x, y, &n, force_channels);
@@ -205,7 +205,7 @@ unsigned char* GUIFactory::loadImage(const char* file, int* x, int* y){
 	}
 
 	return image_data;
-}
+}*/
 
 GLuint GUIFactory::newTexture(const char* file){
 	int x, y;

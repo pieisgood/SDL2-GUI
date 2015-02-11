@@ -1,6 +1,7 @@
 #ifndef UI_STENCIL
 #define UI_STENCIL
 
+#include <GL\glew.h>
 
 class GL_Stencil {
 private:

@@ -114,7 +114,7 @@ private:
 	 *
 	 * \return
 	 */
-	unsigned char* loadImage(const char* file, int* x, int* y);
+	//unsigned char* loadImage(const char* file, int* x, int* y);
 
 	/*!
 	 * \brief

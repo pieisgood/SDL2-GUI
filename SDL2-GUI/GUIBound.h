@@ -5,7 +5,7 @@
  *
  * \brief Base class for boudning geometry
  *
- * This class is the base class for all boudning objects.
+ * This class is the base class for all bounding objects.
  * Each derived class should represent a single geometric bound.
  * Each derived class should only expose the isHit() member function.
  * 

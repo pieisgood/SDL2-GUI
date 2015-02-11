@@ -73,7 +73,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="Element.cpp" />
+    <ClCompile Include="FrameBuffer.cpp" />
+    <ClCompile Include="GLSLMaterial.cpp" />
     <ClCompile Include="GLSLShader.cpp" />
     <ClCompile Include="GUIBoxBound.cpp" />
     <ClCompile Include="GUIButton.cpp" />
@@ -87,8 +90,17 @@
     <ClCompile Include="GUITextInput.cpp" />
     <ClCompile Include="GUIView.cpp" />
     <ClCompile Include="mainSDLtest.cpp" />
+    <ClCompile Include="MaterialFactory.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureLoading.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="VertAttribLoading.cpp" />
+    <ClCompile Include="VertexAttrib.cpp" />
+    <ClInclude Include="CubeMap.h" />
+    <ClInclude Include="FrameBuffer.h" />
+    <ClInclude Include="GLSLMaterial.h" />
     <ClInclude Include="GLSLShader.h" />
     <ClInclude Include="GL_Camera.h" />
     <ClInclude Include="GL_Stencil.h" />
@@ -105,16 +117,24 @@
     <ClInclude Include="GUITextInput.h" />
     <ClInclude Include="GUIUnorderedList.h" />
     <ClInclude Include="GUIView.h" />
+    <ClInclude Include="MaterialFactory.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="SimpleMesh.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="stb_truetype.h" />
     <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureLoading.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="tut1.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="UniformVar.h" />
+    <ClInclude Include="UniformVarLoading.h" />
     <ClInclude Include="UtilityFuncs.h" />
+    <ClInclude Include="VertAttribLoading.h" />
+    <ClInclude Include="VertexAttrib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Element.h" />

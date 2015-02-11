@@ -22,6 +22,12 @@
     <Filter Include="Source Files\GUI_Components">
       <UniqueIdentifier>{0f98e5eb-d6e7-493a-b54f-6794a91e587e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\OGLHeaders">
+      <UniqueIdentifier>{0270fc61-583f-44b0-af2c-76e9109a0744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OGLImplementation">
+      <UniqueIdentifier>{6bc5525b-0002-477f-a1e9-34abcde7d25e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainSDLtest.cpp">
@@ -72,14 +78,35 @@
     <ClCompile Include="GUIRadioButton.cpp">
       <Filter>Source Files\GUI_Components</Filter>
     </ClCompile>
+    <ClCompile Include="FrameBuffer.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialFactory.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoading.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="VertAttribLoading.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexAttrib.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMap.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="GLSLMaterial.cpp">
+      <Filter>Source Files\OGLImplementation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GL_Camera.h">
-      <Filter>Header Files\3DBackground</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleMesh.h">
-      <Filter>Header Files\3DBackground</Filter>
-    </ClInclude>
     <ClInclude Include="tut1.h">
       <Filter>Header Files\3DBackground</Filter>
     </ClInclude>
@@ -91,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="GUIBound.h">
       <Filter>Header Files\GUI_Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GLSLShader.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GUIBoxBound.h">
       <Filter>Header Files\GUI_Components</Filter>
@@ -131,9 +155,6 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\GUI_Components</Filter>
     </ClInclude>
-    <ClInclude Include="GL_Stencil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GUITextInput.h">
       <Filter>Header Files\GUI_Components</Filter>
     </ClInclude>
@@ -157,6 +178,51 @@
     </ClInclude>
     <ClInclude Include="GUIUnorderedList.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_Stencil.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GLSLShader.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameBuffer.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_Camera.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMesh.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GLSLMaterial.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialFactory.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoading.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformVar.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformVarLoading.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="VertAttribLoading.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexAttrib.h">
+      <Filter>Header Files\OGLHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMap.h">
+      <Filter>Header Files\OGLHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

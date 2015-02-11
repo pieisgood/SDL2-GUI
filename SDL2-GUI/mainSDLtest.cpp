@@ -1,10 +1,11 @@
 #include <iostream>
+#include "MaterialFactory.h"
 #include "GUIFactory.h"
 #include "GL_Camera.h"
 GL_Camera g_cam = GL_Camera();
 #include "tut1.h"
 #include <SDL.h>
-#include <vld.h>
+//#include <vld.h>
 
 SDL_Window* g_pWindow = 0;
 SDL_Renderer* g_pRenderer  = 0;
@@ -22,8 +23,10 @@ int main(int argc, char **argv){
 	bool running = true;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
+
 	}
 
 	g_pWindow = SDL_CreateWindow("SDL2.0 Opengl 3.3 Setup", SDL_WINDOWPOS_CENTERED,
@@ -33,8 +36,10 @@ int main(int argc, char **argv){
 	GLenum err = glewInit();
 
 	if(g_pWindow == 0){
+
 		std::cout << "SDL_CreateRenderer error: " << SDL_GetError() << std::endl;
 		return 1;
+
 	}
 
 
@@ -55,32 +60,45 @@ int main(int argc, char **argv){
 	unsigned int tDelta = 0;
 	std::cout << key[SDLK_q];
 	std::cout << mouse;
+
 	std::shared_ptr<SDLGUI::GUIEvent> guiEvent(new SDLGUI::GUIEvent());
 
 	int frameCount = 0;
 	int msSum = 0;
 
 	while(running){
+
 		SDL_PumpEvents();
+
+		//glClear( GL_COLOR_BUFFER_BIT );
+
 		while(SDL_PollEvent(&ourEvents)){
+
 			testManager->onEvent(&ourEvents);
+
 		}
+
 		nextTime = SDL_GetTicks();
 		tDelta = nextTime - curTime;
 		curTime = nextTime;
 
 		
 		if(msSum > 60){
+
 			float fps = (float)frameCount /((float)msSum/1000.0) ;
+
 			testManager->updateMs(fps);
 			msSum = 0;
 			frameCount = 0;
+
 		}
 
 		testManager->pollGUIEvent(guiEvent);
 
 		if(guiEvent->type == SDLGUI::GUIEventType::GUI_BUTTON){
+
 			printf("you clicked button: %s", guiEvent->button.id);
+
 		}
 
 		if(key[SDL_SCANCODE_A]){
@@ -104,9 +122,9 @@ int main(int argc, char **argv){
 				g_cam.mouseRotation(mouseXRel*2, mouseYRel*2);
 			}
 		
+
 		testManager->draw();
 		display();
-		
 		
 		
 		
