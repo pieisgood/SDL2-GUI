@@ -71,6 +71,8 @@ public:
 		return m_fbTexture;
 	}
 
+	void setWindow( int windowWidth, int windowHeight );
+
 };
 
 #endif

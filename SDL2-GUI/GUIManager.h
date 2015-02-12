@@ -33,6 +33,7 @@
 #include "GUILayout.h"
 #include "GUIButton.h"
 #include "GUITextBox.h"
+#include "FrameBuffer.h"
 #include <glm\gtc\type_ptr.hpp>
 #include <glm\gtx\transform.hpp>
 
@@ -44,13 +45,7 @@ private:
 
 	std::shared_ptr<Element> m_window;
 	std::map< std::string , std::shared_ptr<Element>> m_idMap;
-	ElementSurface m_windowPanel; 
-	GLuint m_GUIFrameBuffer; 
-	GLuint m_fbTexture; 
-	GLuint m_renderBuffer;
-	GLuint m_windowVBO;
-	GLuint m_windowVTBO;
-	GLuint m_windowVAO;
+	std::shared_ptr<FrameBuffer> m_GUIFrameBuffer;
 	std::shared_ptr<GLSLProgram> m_panelProgram;
 	std::shared_ptr<GUITextBox> m_fps; //a box to render fps with
 	std::shared_ptr<GUIView> m_view;

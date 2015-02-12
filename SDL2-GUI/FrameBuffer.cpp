@@ -2,6 +2,45 @@
 
 FrameBuffer::FrameBuffer( int windowWidth , int windowHeight ) {
 
+	this->setWindow( windowWidth , windowHeight );
+
+}
+
+FrameBuffer::~FrameBuffer( void ) {
+
+}
+
+void FrameBuffer::use( void ) {
+
+	glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
+
+}
+
+void FrameBuffer::renderToMainBuffer( void ) {
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glClearColor( 0.0f , 0.0f , 0.0f , 0.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glBindVertexArray(m_windowVAO);
+
+	int bufferLoc = glGetUniformLocation( m_program->getHandle() , "panel_texture" );
+	
+	m_program->use();
+		m_program->setUniform("pos", glm::vec2(0, 0));
+		m_program->setUniform("scale", glm::vec2(1.0, 1.0));
+		m_program->setUniform("sub", 0);
+		glActiveTexture(GL_TEXTURE0);
+		glUniform1i( bufferLoc , 0 );
+		glBindTexture(GL_TEXTURE_2D, m_fbTexture);
+		glEnableVertexAttribArray(0);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+	glUseProgram(0);
+
+}
+
+void FrameBuffer::setWindow( int windowWidth, int windowHeight ) {
+	
 	glGenVertexArrays(1, &m_windowVAO);
 	glBindVertexArray(m_windowVAO);
 
@@ -54,39 +93,5 @@ FrameBuffer::FrameBuffer( int windowWidth , int windowHeight ) {
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-}
-
-FrameBuffer::~FrameBuffer( void ) {
-
-}
-
-void FrameBuffer::use( void ) {
-
-	glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
-
-}
-
-void FrameBuffer::renderToMainBuffer( void ) {
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glClearColor( 0.46f , 0.53 , 0.6f , 1.0);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glBindVertexArray(m_windowVAO);
-
-	int bufferLoc = glGetUniformLocation( m_program->getHandle() , "panel_texture" );
-	
-	m_program->use();
-		m_program->setUniform("pos", glm::vec2(0, 0));
-		m_program->setUniform("scale", glm::vec2(1.0, 1.0));
-		m_program->setUniform("sub", 0);
-		glActiveTexture(GL_TEXTURE0);
-		glUniform1i( bufferLoc , 0 );
-		glBindTexture(GL_TEXTURE_2D, m_fbTexture);
-		glEnableVertexAttribArray(0);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-	glUseProgram(0);
-
 }
 
